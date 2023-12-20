@@ -29,7 +29,7 @@ class OrderContainer {
 
             }
 
-            await addNewItem();
+            await removeItemById();
             res.status(200).json({
                 ok: true,
                 msg: 'hola'
