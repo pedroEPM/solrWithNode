@@ -2,7 +2,7 @@ const allNotes = require('../models/allNotes');
 const oldNotes = require('../models/oldNotes2');
 
 const { setNote } = require('../utils/getBodys');
-
+const { addNewItem, removeItemById } = require('../utils/solr_connection');
 class OrderContainer {
 
     async sendInformationToSolr(req, res) {
@@ -29,6 +29,8 @@ class OrderContainer {
 
                 console.log(notes);
             }
+
+            await addNewItem();
             res.status(200).json({
                 ok: true,
                 msg: 'hola'
