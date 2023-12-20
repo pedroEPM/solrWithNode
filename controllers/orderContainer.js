@@ -21,18 +21,18 @@ class OrderContainer {
                 }
 
                 const notes = [];
-                const getNotes = await allNotes.find(body).limit(2);
-                const getOldNotes = await allNotes.find(body).limit(2);
+                const getNotes = await allNotes.find(body);
+                const getOldNotes = await allNotes.find(body);
 
                 for(const littleNote of getNotes) notes.push(setNote(littleNote));
                 for(const littleNote of getOldNotes) notes.push(setNote(littleNote));
 
+                for(const isNewNote of notes) await addNewItem(isNewNote);
             }
 
-            await removeItemById();
             res.status(200).json({
                 ok: true,
-                msg: 'hola'
+                msg: 'Added all items'
             });
         } catch (error) {
             console.log(`--- Error from sendInformationToSolr ---`);

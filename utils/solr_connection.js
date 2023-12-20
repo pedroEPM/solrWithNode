@@ -13,7 +13,6 @@ class SolrConnection {
     async addNewItem(body) {
         try {
             console.log(`--- Adding new data ---`);
-            body = { id : 12, title_t : 'Hello' };
             const obj = await client.add(body);
             console.log(`--- Data added ---`)
     
