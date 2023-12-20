@@ -27,7 +27,6 @@ class OrderContainer {
                 for(const littleNote of getNotes) notes.push(setNote(littleNote));
                 for(const littleNote of getOldNotes) notes.push(setNote(littleNote));
 
-                console.log(notes);
             }
 
             await addNewItem();
