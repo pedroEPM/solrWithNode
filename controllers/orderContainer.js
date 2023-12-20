@@ -21,7 +21,7 @@ class OrderContainer {
 
                 const notes = [];
                 const getNotes = await allNotes.find(body);
-                const getOldNotes = await allNotes.find(body);
+                const getOldNotes = await oldNotes.find(body);
 
                 for(const littleNote of getNotes) notes.push(setNote(littleNote));
                 for(const littleNote of getOldNotes) notes.push(setNote(littleNote));
