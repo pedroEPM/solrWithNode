@@ -25,14 +25,14 @@ class SolrConnection {
     async removeItemById(id) {
         try {
             console.log(`--- Deleting new data ---`);            
-            const field = 'id';
+            const field = '_id';
             id = '*';
             const obj = await client.delete(field, id);
             console.log(`--- Data deleted ---`)
 
         } catch (error) {
             console.log(error)
-            console.log('error addNewItem function')        
+            console.log('error Remove item function')        
         }
     }
 
