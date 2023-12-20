@@ -1,0 +1,43 @@
+26
+
+1.Stop the mongod process by issuing the following command:-
+
+    sudo service mongod stop
+    
+2.Remove any MongoDB packages that you had previously installed:-
+
+    sudo apt-get purge mongodb-org*
+    
+3.Remove MongoDB databases and log files:-
+
+    sudo rm -r /var/log/mongodb
+    sudo rm -r /var/lib/mongodb
+    
+4.Then reinstall mangodb 4.4.8
+
+5.Import the public key used by the package management system:-
+
+    wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
+    
+6.The following instruction is for Ubuntu 20.04 (Focal):-
+
+    echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
+    
+7.Update Apt
+
+    sudo apt-get update
+    
+8.Install mongodb
+
+    sudo apt-get install mongodb-org=4.4.8 mongodb-org-server=4.4.8 mongodb-org-shell=4.4.8 mongodb-org-mongos=4.4.8 mongodb-org-tools=4.4.8
+    
+9.Use mongod --version to check its succesfully installed
+
+10.If u encounter any error while using mongod
+
+    sudo mkdir /data
+    cd /data
+    sudo mkdir db
+    sudo pkill -f mongod
+    
+11.Then use sudo mongod command.
