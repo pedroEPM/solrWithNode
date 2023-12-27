@@ -12,9 +12,9 @@ class SolrConnection {
 
     async addNewItem(body) {
         try {
-            console.log(`--- Adding new data ---`);
+            // console.log(`--- Adding new data ---`);
             const obj = await client.add(body);
-            console.log(`--- Data added ---`)
+            // console.log(`--- Data added ---`)
     
         } catch (error) {
             console.log(error)
