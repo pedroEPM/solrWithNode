@@ -8,8 +8,8 @@ class OrderContainer {
     async sendInformationToSolr(req, res) {
         try {
             console.log(`-- Sending information to solr --`);
-            // for(let i = 1925; i <= 2024; i++) {
-            for(let i = 1925; i <= 1925; i++) {
+            for(let i = 1925; i <= 2024; i++) {
+            // for(let i = 1925; i <= 1925; i++) {
                 console.log(`- ${i} -`);
 
                 const nextYear = i + 1;
@@ -21,8 +21,8 @@ class OrderContainer {
                 }
 
                 const notes = [];
-                const getNotes = await allNotes.find(body).limit(20);
-                const getOldNotes = await oldNotes.find(body).limit(20);
+                const getNotes = await allNotes.find(body);
+                const getOldNotes = await oldNotes.find(body);
 
                 for(const littleNote of getNotes) notes.push(setNote(littleNote));
                 for(const littleNote of getOldNotes) notes.push(setNote(littleNote));
