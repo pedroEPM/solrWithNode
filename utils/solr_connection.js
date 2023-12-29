@@ -25,7 +25,7 @@ class SolrConnection {
     async removeItemById(id) {
         try {
             console.log(`--- Deleting new data ---`);            
-            const field = '_id';
+            const field = 'id';
             id = '*';
             const obj = await client.delete(field, id);
             console.log(`--- Data deleted ---`)
