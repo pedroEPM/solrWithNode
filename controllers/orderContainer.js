@@ -8,29 +8,34 @@ class OrderContainer {
     async sendInformationToSolr(req, res) {
         try {
             console.log(`-- Sending information to solr --`);
-            // for(let i = 1985; i <= 1989; i++) {
-            // // for(let i = 1925; i <= 2024; i++) {
-            //     console.log(`- ${i} -`);
+            for(let i = 1925; i <= 2024; i++) {
+            // for(let i = 1925; i <= 2024; i++) {
+                console.log(`- ${i} -`);
 
-            //     const nextYear = i + 1;
-            //     const body = {
-            //         date: {
-            //             $gte: new Date(`${i}-01-01`),
-            //             $lt: new Date(`${nextYear}-01-01`),
-            //         }
-            //     }
+                const nextYear = i + 1;
+                const body = {
+                    date: {
+                        $gte: new Date(`${i}-01-01`),
+                        $lt: new Date(`${nextYear}-01-01`),
+                    }
+                }
 
-            //     const notes = [];
-            //     const getNotes = await allNotes.find(body);
-            //     const getOldNotes = await oldNotes.find(body);
+                const notes = [];
+                const getNotes = await allNotes.find(body);
+                const getOldNotes = await oldNotes.find(body);
 
-            //     for(const littleNote of getNotes) notes.push(setNote(littleNote));
-            //     for(const littleNote of getOldNotes) notes.push(setNote(littleNote));
+                for(const littleNote of getNotes) notes.push(setNote(littleNote));
+                for(const littleNote of getOldNotes) notes.push(setNote(littleNote));
 
-            //     for(const isNewNote of notes) await addNewItem(isNewNote);
-            // }
+                for(const isNewNote of notes) {
+                    isNewNote.date = isNewNote.date.setHours(0, 0, 0);
+                    isNewNote.LastModifyDate = isNewNote.LastModifyDate.setHours(0, 0, 0);
+                    
+                    await addNewItem(isNewNote);
+                }
+            }
 
-            await removeItemById();
+            // await removeItemById();
             res.status(200).json({
                 ok: true,
                 msg: 'Added all items'
