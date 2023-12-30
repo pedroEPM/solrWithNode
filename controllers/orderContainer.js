@@ -2,7 +2,7 @@ const allNotes = require('../models/allNotes');
 const oldNotes = require('../models/oldNotes2');
 
 const { setNote } = require('../utils/getBodys');
-const { addNewItem, removeItemById } = require('../utils/solr_connection');
+const { addNewItem, removeItemById, customGet } = require('../utils/solr_connection');
 class OrderContainer {
 
     async sendInformationToSolr(req, res) {
@@ -45,6 +45,25 @@ class OrderContainer {
             });
         } catch (error) {
             console.log(`--- Error from sendInformationToSolr ---`);
+            console.log(error);
+            res.status(500).json({
+                ok: false,
+                msg: error
+            });
+        }
+    }
+
+    async getAllItems(req, res) {
+        try {
+            console.log('Starting get items');
+            const newData = await customGet();
+
+            res.status(200).json({
+                ok: true,
+                data: newData
+            });
+        } catch (error) {
+            console.log(`--- Error from getAllItems OrderContainer ---`);
             console.log(error);
             res.status(500).json({
                 ok: false,

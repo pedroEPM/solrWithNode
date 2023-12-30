@@ -15,16 +15,16 @@ class SolrConnection {
             // console.log(`--- Adding new data ---`);
             const obj = await client.add(body);
             // console.log(`--- Data added ---`)
-    
+
         } catch (error) {
             console.log(error)
-            console.log('error addNewItem function')        
+            console.log('error addNewItem function')
         }
     }
 
     async removeItemById(id) {
         try {
-            console.log(`--- Deleting new data ---`);            
+            console.log(`--- Deleting new data ---`);
             const field = 'id';
             id = '*';
             const obj = await client.delete(field, id);
@@ -32,8 +32,26 @@ class SolrConnection {
 
         } catch (error) {
             console.log(error)
-            console.log('error Remove item function')        
+            console.log('error Remove item function')
         }
+    }
+
+    async customGet(body) {
+        try {
+            const query = 'fq=date%3A%20%5B%221943-01-01T00%3A00%3A00Z%22%20TO%20%221943-12-31T00%3A00%3A00Z%22%5D&indent=true&q.op=AND&q=content%3A%20*Alemania*&rows=20&start=10&useParams=';
+            // return await client.get('mlt', query);
+            client.get('mlt', query, function(err, obj){
+                if(err){
+                    console.log(err);
+                }else{
+                    return obj;
+                }
+            });
+        } catch (error) {
+            console.log(error)
+            console.log('error get items function')
+        }
+
     }
 
 }
