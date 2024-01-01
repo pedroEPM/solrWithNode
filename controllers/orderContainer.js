@@ -68,8 +68,6 @@ class OrderContainer {
                 }
             })
 
-            console.log(newData?.response?.docs)
-
             res.status(200).json({
                 ok: true,
                 data: newData?.response?.docs
