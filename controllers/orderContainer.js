@@ -2,6 +2,7 @@ const allNotes = require('../models/allNotes');
 const oldNotes = require('../models/oldNotes2');
 
 const { setNote } = require('../utils/getBodys');
+const { setCustomParams } = require('../utils/setParams');
 const { addNewItem, removeItemById, customGet } = require('../utils/solr_connection');
 class OrderContainer {
 
@@ -56,11 +57,15 @@ class OrderContainer {
     async getAllItems(req, res) {
         try {
             console.log('Starting get items');
-            const newData = await customGet();
+            // const newData = await customGet();
+            const newParams = setCustomParams(req.body);
+
+            console.log(newParams)
+            console.log('new params----')
 
             res.status(200).json({
                 ok: true,
-                data: newData
+                data: newParams
             });
         } catch (error) {
             console.log(`--- Error from getAllItems OrderContainer ---`);

@@ -38,7 +38,8 @@ class SolrConnection {
 
     async customGet(body) {
         try {
-            const query = 'fq=date%3A%20%5B%221943-01-01T00%3A00%3A00Z%22%20TO%20%221943-12-31T00%3A00%3A00Z%22%5D&indent=true&q.op=AND&q=content%3A%20*Alemania*&rows=20&start=10&useParams=';
+            const query = `fq=date%3A%20%5B%221943-01-01T00%3A00%3A00Z%22%20TO%20%221943-12-31T00%3A00%3A00Z%22%5D&indent=true&q.op=AND&q=content%3A%20*Alemania*&rows=20&start=10&useParams=`;
+            // const query = 'fq=date%3A%20%5B%221943-01-01T00%3A00%3A00Z%22%20TO%20%221943-12-31T00%3A00%3A00Z%22%5D&indent=true&q.op=AND&q=content%3A%20*Alemania*&rows=20&start=10&useParams=';
             return await client.search(query);
             // return await client.doQuery()
             //     .q({content : 'piñata'})
