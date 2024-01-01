@@ -79,11 +79,8 @@ const setCustomParams = (body) => {
     } else {
         customQuery = customQuery + rowsAndStart;
     }
-    //
 
-    return {
-        customQuery
-    };
+    return customQuery;
 }
 
 

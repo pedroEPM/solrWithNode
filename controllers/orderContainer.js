@@ -57,15 +57,17 @@ class OrderContainer {
     async getAllItems(req, res) {
         try {
             console.log('Starting get items');
-            // const newData = await customGet();
             const newParams = setCustomParams(req.body);
+            const newData = await customGet(newParams);
 
-            console.log(newParams)
             console.log('new params----')
+            console.log(newData.length)
+            console.log('new params----')
+            console.log(newData)
 
             res.status(200).json({
                 ok: true,
-                data: newParams
+                data: newData
             });
         } catch (error) {
             console.log(`--- Error from getAllItems OrderContainer ---`);
