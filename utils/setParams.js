@@ -41,8 +41,10 @@ const setCustomParams = (body) => {
     }
 
     if (body.date && body.dateRange && !body.key) {
-        const firstDate = new Date(body.dateRange).setHours(0, 0, 0);
-        const secondDate = new Date(body.data).setHours(23, 59, 59);
+        let firstDate = new Date(body.dateRange).setHours(0, 0, 0);
+        let secondDate = new Date(body.date).setHours(23, 59, 59);
+        firstDate = new Date(firstDate).toISOString();
+        secondDate = new Date(secondDate).toISOString();
         const customDate = `date: [${firstDate} TO ${secondDate}]`;
         if(customQuery === ''){
             customQuery = customDate;
