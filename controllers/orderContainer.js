@@ -61,13 +61,13 @@ class OrderContainer {
             const newData = await customGet(newParams);
 
             console.log('new params----')
-            console.log(newData?.response?.doc?.length)
+            console.log(newData?.response?.docs?.length)
             console.log('new params')
-            console.log(newData)
+            console.log(newData?.response.docs)
 
             res.status(200).json({
                 ok: true,
-                data: newData?.response?.doc
+                data: newData?.response?.docs
             });
         } catch (error) {
             console.log(`--- Error from getAllItems OrderContainer ---`);
