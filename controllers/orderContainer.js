@@ -63,18 +63,24 @@ class OrderContainer {
             const newParams = setCustomParams(req.body);
             const newData = await customGet(newParams);
 
-             
-            newData?.response?.docs?.map(littleData => {
-                const littleObjs = Object.keys(littleData);
-                for(const n of littleObjs) {
-                    littleData[n] = littleData[n][0];
-                }
-            })
-
-            res.status(200).json({
-                ok: true,
-                data: newData?.response?.docs
-            });
+            if(!body.firstTimeSearch) {
+                newData?.response?.docs?.map(littleData => {
+                    const littleObjs = Object.keys(littleData);
+                    for(const n of littleObjs) {
+                        littleData[n] = littleData[n][0];
+                    }
+                })
+                
+                res.status(200).json({
+                    ok: true,
+                    data: newData?.response?.docs
+                });
+            }else {
+                res.status(200).json({
+                    ok: true,
+                    data: newData?.response?.numFound
+                });
+            }
         } catch (error) {
             console.log(`--- Error from getAllItems OrderContainer ---`);
             console.log(error);
