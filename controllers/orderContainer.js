@@ -60,10 +60,15 @@ class OrderContainer {
             const newParams = setCustomParams(req.body);
             const newData = await customGet(newParams);
 
-            console.log('new params----')
-            console.log(newData )
-            console.log('new params')
-            // console.log(newData?.response.docs)
+             
+            newData?.response?.docs?.map(littleData => {
+                const littleObjs = Object.keys(littleData);
+                for(n of littleObjs) {
+                    littleData[n] = littleData[n][0];
+                }
+            })
+
+            console.log(newData)
 
             res.status(200).json({
                 ok: true,
