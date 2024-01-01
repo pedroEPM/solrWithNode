@@ -1,3 +1,5 @@
+const { removeAccents } = require('./setFlatText');
+
 const setCustomParams = (body) => {
     
     let customQuery = '';
