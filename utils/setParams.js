@@ -2,7 +2,7 @@ const { removeAccents } = require('./setFlatText');
 
 const setCustomParams = (body) => {
     
-    const startQuery = 'q= ';
+    const startQuery = 'q=';
     let customQuery = startQuery;
     const wordsToFind = [];
     // /*imageBody.hide = imageBodyA.hide =*/ noteBody.hide = { $ne: true };
