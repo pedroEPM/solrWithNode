@@ -1,6 +1,7 @@
 const setCustomParams = (body) => {
     
     let customQuery = '';
+    const wordsToFind = [];
     // /*imageBody.hide = imageBodyA.hide =*/ noteBody.hide = { $ne: true };
 
     if (body.ignoredwords && !body.key) {
