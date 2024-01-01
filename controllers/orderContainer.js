@@ -58,6 +58,7 @@ class OrderContainer {
         try {
             console.log('Starting get items');
             const newParams = setCustomParams(req.body);
+            console.log(newParams)
             console.log('Searching notes')
             const newData = await customGet(newParams);
 
