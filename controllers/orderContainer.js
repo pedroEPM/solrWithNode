@@ -63,7 +63,7 @@ class OrderContainer {
              
             newData?.response?.docs?.map(littleData => {
                 const littleObjs = Object.keys(littleData);
-                for(n of littleObjs) {
+                for(const n of littleObjs) {
                     littleData[n] = littleData[n][0];
                 }
             })
