@@ -37,7 +37,7 @@ const setCustomParams = (body) => {
             }
         });
 
-        const allSearchs = `content: ${newString} OR title: ${newString} OR subTitle: ${newString} OR originalAuthor: ${newString} OR modifierAuthor: ${newString}`;
+        const allSearchs = `content:${newString} OR title:${newString} OR subTitle:${newString} OR originalAuthor:${newString} OR modifierAuthor:${newString}`;
         customQuery = startQuery + allSearchs;
     }
 
@@ -46,7 +46,7 @@ const setCustomParams = (body) => {
         let secondDate = new Date(body.date).setHours(23, 59, 59);
         firstDate = new Date(firstDate).toISOString();
         secondDate = new Date(secondDate).toISOString();
-        const customDate = `date: [${firstDate} TO ${secondDate}]`;
+        const customDate = `date:[${firstDate} TO ${secondDate}]`;
         if(customQuery === startQuery){
             customQuery = startQuery + customDate;
         } else {
@@ -56,7 +56,7 @@ const setCustomParams = (body) => {
     }
 
     if (body.publicationRef && !body.key) {
-        const findByPublication = `publicationRef: ${body.publicationRef}`;
+        const findByPublication = `publicationRef:${body.publicationRef}`;
         if(customQuery === startQuery){
             customQuery = startQuery + findByPublication;
         } else {
@@ -65,7 +65,7 @@ const setCustomParams = (body) => {
     }
 
     if (body.noteBookRef && !body.key) {
-        const findByNotebook = `noteBookRef: ${body.noteBookRef}`;
+        const findByNotebook = `noteBookRef:${body.noteBookRef}`;
         if(customQuery === startQuery){
             customQuery = startQuery + findByNotebook;
         } else {
