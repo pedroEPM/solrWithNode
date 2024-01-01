@@ -2,7 +2,8 @@ const { removeAccents } = require('./setFlatText');
 
 const setCustomParams = (body) => {
     
-    let customQuery = '';
+    const startQuery = 'q= ';
+    let customQuery = startQuery;
     const wordsToFind = [];
     // /*imageBody.hide = imageBodyA.hide =*/ noteBody.hide = { $ne: true };
 
@@ -37,7 +38,7 @@ const setCustomParams = (body) => {
         });
 
         const allSearchs = `content: ${newString} OR title: ${newString} OR subTitle: ${newString} OR originalAuthor: ${newString} OR modifierAuthor: ${newString}`;
-        customQuery = allSearchs;
+        customQuery = startQuery + allSearchs;
     }
 
     if (body.date && body.dateRange && !body.key) {
@@ -46,8 +47,8 @@ const setCustomParams = (body) => {
         firstDate = new Date(firstDate).toISOString();
         secondDate = new Date(secondDate).toISOString();
         const customDate = `date: [${firstDate} TO ${secondDate}]`;
-        if(customQuery === ''){
-            customQuery = customDate;
+        if(customQuery === startQuery){
+            customQuery = startQuery + customDate;
         } else {
             customQuery = customQuery + ` AND ${customDate}`;
 
@@ -56,8 +57,8 @@ const setCustomParams = (body) => {
 
     if (body.publicationRef && !body.key) {
         const findByPublication = `publicationRef: ${body.publicationRef}`;
-        if(customQuery === ''){
-            customQuery = findByPublication;
+        if(customQuery === startQuery){
+            customQuery = startQuery + findByPublication;
         } else {
             customQuery = customQuery + ` AND ${findByPublication}`;
         }
@@ -65,14 +66,20 @@ const setCustomParams = (body) => {
 
     if (body.noteBookRef && !body.key) {
         const findByNotebook = `noteBookRef: ${body.noteBookRef}`;
-        if(customQuery === ''){
-            customQuery = findByNotebook;
+        if(customQuery === startQuery){
+            customQuery = startQuery + findByNotebook;
         } else {
             customQuery = customQuery + ` AND ${findByNotebook}`;
         }
     }
 
-    // &rows=20&start=
+    const rowsAndStart = `&rows=${body.cLimit}&start=${body.cSkip}`;
+    if(customQuery === startQuery) {
+        customQuery = startQuery + rowsAndStart;
+    } else {
+        customQuery = customQuery + rowsAndStart;
+    }
+    //
 
     return {
         customQuery
