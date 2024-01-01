@@ -44,8 +44,8 @@ const setCustomParams = (body) => {
     }
 
     if (body.date && body.dateRange && !body.key) {
-        let firstDate = new Date(body.dateRange).toLocaleString("es-MX").setHours(0, 0, 0);
-        let secondDate = new Date(body.date).toLocaleString("es-MX").setHours(23, 59, 59);
+        let firstDate = new Date(body.dateRange).setHours(0, 0, 0).toLocaleString("es-MX");
+        let secondDate = new Date(body.date).setHours(23, 59, 59).toLocaleString("es-MX");
         firstDate = new Date(firstDate).toISOString();
         secondDate = new Date(secondDate).toISOString();
         const customDate = `date:[${firstDate} TO ${secondDate}]`;
