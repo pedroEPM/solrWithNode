@@ -61,9 +61,9 @@ class OrderContainer {
             const newData = await customGet(newParams);
 
             console.log('new params----')
-            console.log(newData?.response?.docs?.length)
+            console.log(newData )
             console.log('new params')
-            console.log(newData?.response.docs)
+            // console.log(newData?.response.docs)
 
             res.status(200).json({
                 ok: true,
