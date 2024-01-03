@@ -39,7 +39,7 @@ const setCustomParams = (body) => {
 
 
         newString = newString.trim();
-        const allSearchs = `({!func}asciifolding(content:${newString}) OR {!func}asciifolding(title:${newString}) OR {!func}asciifolding(subTitle:${newString}) OR {!func}asciifolding(originalAuthor:${newString}) OR {!func}asciifolding(modifierAuthor:${newString}))`;
+        const allSearchs = `(content:${newString} OR title:${newString} OR subTitle:${newString} OR originalAuthor:${newString} OR modifierAuthor:${newString})`;
         customQuery = startQuery + allSearchs;
     }
 
