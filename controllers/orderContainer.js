@@ -61,9 +61,7 @@ class OrderContainer {
             // console.log(req.body)
 
             const newParams = setCustomParams(req.body);
-
-            console.log(newParams)
-
+ 
             const newData = await customGet(newParams);
 
             if(req.body.firstTimeSearch === 'false') {
