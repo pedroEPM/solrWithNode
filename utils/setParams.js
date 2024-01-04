@@ -32,11 +32,9 @@ const setCustomParams = (body) => {
     if (wordsToFind.length > 0) {
         let newString = '';
         wordsToFind.forEach(word => {
-            if (!word.isIgnored && newString){
-                newString = newString + `\"${word.word}\"`;
-            } else {
-                newString = newString + ` AND \"${word.word}\"`;
-            }
+            if (!word.isIgnored && newString === '') newString = newString + `\"${word.word}\"`;
+            if (!word.isIgnored && newString !== '') newString = newString + `AND \"${word.word}\"`;
+
         });
 
         wordsToFind.forEach(word => {
