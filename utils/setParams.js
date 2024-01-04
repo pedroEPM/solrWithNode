@@ -82,6 +82,8 @@ const setCustomParams = (body) => {
         customQuery = customQuery + rowsAndStart;
     }
 
+    if(customQuery === startQuery) customQuery = startQuery + '*:*'
+
     customQuery = customQuery
                         .replaceAll(' ', '%20')
                         .replaceAll(':', '%3A');
