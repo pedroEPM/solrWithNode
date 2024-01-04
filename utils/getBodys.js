@@ -26,8 +26,8 @@ const setNote = (littleNewData) => {
         title: littleNewData.title ?? '',
         isEditedByGalileo: littleNewData.isEditedByGalileo ?? false,
         isNewId: littleNewData.isNewId,
-        customId: littleNewData.customId ?? 1,
-        customIdReverse: littleNewData.customIdReverse ?? 1,
+        customId: Number(littleNewData.customId) ?? 1,
+        customIdReverse: Number(littleNewData.customIdReverse) ?? 1,
     }
 }
 
