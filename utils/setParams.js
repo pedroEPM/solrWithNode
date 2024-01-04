@@ -31,11 +31,12 @@ const setCustomParams = (body) => {
         let newString = '';
         wordsToFind.forEach(word => {
             if (!word.isIgnored) newString = newString + ` \"${word.word}\"`;
-            if (word.isIgnored) newString = newString + ` AND NOT \"${word.word}\"`;
-            
         });
 
-
+        wordsToFind.forEach(word => {
+             if (word.isIgnored) newString = newString + ` AND NOT \"${word.word}\"`;
+        });
+        
         newString = newString.trim();
         const allSearchs = `(content:${newString} OR title:${newString} OR subTitle:${newString} OR originalAuthor:${newString} OR modifierAuthor:${newString})`;
         customQuery = startQuery + allSearchs;
