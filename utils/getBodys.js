@@ -6,7 +6,7 @@ const setNote = (littleNewData) => {
         // customId: segundoID,
         date: new Date(littleNewData.date) ?? '',
         editionRef: littleNewData.editionRef ?? null,
-        idMegamedia: `  ${littleNewData.idMegamedia}   `.trim() ?? null,
+        idMegamedia: `cIDM-${littleNewData.idMegamedia}` ?? null,
         idOriginal: littleNewData.idOriginal ?? null,
         isPublished: littleNewData.isPublished ?? false,
         isSelleable: littleNewData.isSelleable ?? false,
