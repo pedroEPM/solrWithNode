@@ -75,14 +75,14 @@ const setCustomParams = (body) => {
         }
     }
 
+    if(customQuery === startQuery) customQuery = startQuery + '*:*';
+
     const rowsAndStart = `&rows=${body.cLimit}&start=${body.cSkip}`;
     if(customQuery === startQuery) {
         customQuery = startQuery + rowsAndStart;
     } else {
         customQuery = customQuery + rowsAndStart;
     }
-
-    if(customQuery === startQuery) customQuery = startQuery + '*:*'
 
     customQuery = customQuery
                         .replaceAll(' ', '%20')
