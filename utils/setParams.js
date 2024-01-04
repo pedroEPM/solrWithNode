@@ -51,18 +51,8 @@ const setCustomParams = (body) => {
         }
 
         newString = newString.replaceAll(')(', ') OR (');
-        // wordsToFind.forEach((word, index) => {
-        //     if (!word.isIgnored && index === 0) newString = newString + `\"${word.word}\"`;
-        //     if (!word.isIgnored && index !== 0) newString = newString + ` AND \"${word.word}\"`;
-
-        // });
-
-        // wordsToFind.forEach(word => {
-        //      if (word.isIgnored) newString = newString + ` AND NOT \"${word.word}\"`;
-        // });
         
         newString = newString.trim();
-        // const allSearchs = `(content:${newString} OR title:${newString} OR subTitle:${newString} OR originalAuthor:${newString} OR modifierAuthor:${newString})`;
         customQuery = startQuery + '(' + newString + ')';
     }
 
