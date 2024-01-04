@@ -27,6 +27,8 @@ const setCustomParams = (body) => {
         wordsToFind.push({ isIgnored: false, word: removeAccents(body.keysentence).replace(/\s+/g, ' ').toLowerCase().trim() });
     }
 
+
+    let notIncluded = '';
     if (wordsToFind.length > 0) {
         let newString = '';
         wordsToFind.forEach(word => {
@@ -34,12 +36,12 @@ const setCustomParams = (body) => {
         });
 
         wordsToFind.forEach(word => {
-             if (word.isIgnored) newString = newString + ` AND NOT \"${word.word}\"`;
+             if (word.isIgnored) notIncluded = notIncluded + ` AND NOT content: \"${word.word}\" AND NOT title: \"${word.word}\" AND NOT subTitle: \"${word.word}\" AND NOT originalAuthor: \"${word.word}\" AND NOT modifierAuthor: \"${word.word}\"`;
         });
         
         newString = newString.trim();
         const allSearchs = `(content:*${newString}* OR title:*${newString}* OR subTitle:*${newString}* OR originalAuthor:*${newString}* OR modifierAuthor:*${newString}*)`;
-        customQuery = startQuery + allSearchs;
+        customQuery = startQuery + allSearchs + notIncluded;
     }
 
     if (body.date && body.dateRange && !body.key) {
