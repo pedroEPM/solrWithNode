@@ -31,9 +31,9 @@ const setCustomParams = (body) => {
     let notIncluded = '';
     if (wordsToFind.length > 0) {
         let newString = '';
-        wordsToFind.forEach(word => {
-            if (!word.isIgnored && newString === '') newString = newString + `\"${word.word}\"`;
-            if (!word.isIgnored && newString !== '') newString = newString + `AND \"${word.word}\"`;
+        wordsToFind.forEach((word, index) => {
+            if (!word.isIgnored && index === 0) newString = newString + `\"${word.word}\"`;
+            if (!word.isIgnored && index !== 0) newString = newString + `AND \"${word.word}\"`;
 
         });
 
