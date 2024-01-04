@@ -40,7 +40,7 @@ const setCustomParams = (body) => {
         });
         
         newString = newString.trim();
-        const allSearchs = `(content:*${newString}* OR title:*${newString}* OR subTitle:*${newString}* OR originalAuthor:*${newString}* OR modifierAuthor:*${newString}*)`;
+        const allSearchs = `(content:${newString} OR title:${newString} OR subTitle:${newString} OR originalAuthor:${newString} OR modifierAuthor:${newString})`;
         customQuery = startQuery + allSearchs;
     }
 
