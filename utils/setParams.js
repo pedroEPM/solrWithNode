@@ -30,10 +30,10 @@ const setCustomParams = (body) => {
     if (wordsToFind.length > 0) {
         let newString = '';
         wordsToFind.forEach(word => {
-            if (word.isIgnored) {
-                newString = newString + ` AND NOT ${word.word}`;
-            } else {
+            if (!word.isIgnored) {
                 newString = newString + ` \"${word.word}\"`;
+            } else {
+                newString = newString + ` AND NOT ${word.word}`;
             }
         });
 
