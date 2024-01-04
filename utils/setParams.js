@@ -29,17 +29,37 @@ const setCustomParams = (body) => {
 
 
     let notIncluded = '';
+    const whereSearch = [
+        'content',
+        'title',
+        'subTitle',
+        'originalAuthor',
+        'modifierAuthor',
+    ];
+
     if (wordsToFind.length > 0) {
         let newString = '';
-        wordsToFind.forEach((word, index) => {
-            if (!word.isIgnored && index === 0) newString = newString + `\"${word.word}\"`;
-            if (!word.isIgnored && index !== 0) newString = newString + ` AND \"${word.word}\"`;
+        for(const littleWhereSearch of whereSearch) {
+            newString = newString + '(';
+            wordsToFind.forEach((word, index) => {
+                if (!word.isIgnored && index === 0) newString = newString + `${littleWhereSearch}: \"${word.word}\"`;
+                if (!word.isIgnored && index !== 0) newString = newString + ` AND ${littleWhereSearch}: \"${word.word}\"`;
+                if (word.isIgnored && index === 0) newString = newString + `-${littleWhereSearch}: \"${word.word}\"`;
+                if (word.isIgnored && index !== 0) newString = newString + ` AND -${littleWhereSearch}: \"${word.word}\"`;
+            });
+            newString = newString + ')';
+        }
 
-        });
+        newString = newString.replaceAll(')(', ') OR (');
+        // wordsToFind.forEach((word, index) => {
+        //     if (!word.isIgnored && index === 0) newString = newString + `\"${word.word}\"`;
+        //     if (!word.isIgnored && index !== 0) newString = newString + ` AND \"${word.word}\"`;
 
-        wordsToFind.forEach(word => {
-             if (word.isIgnored) newString = newString + ` AND NOT \"${word.word}\"`;
-        });
+        // });
+
+        // wordsToFind.forEach(word => {
+        //      if (word.isIgnored) newString = newString + ` AND NOT \"${word.word}\"`;
+        // });
         
         newString = newString.trim();
         const allSearchs = `(content:${newString} OR title:${newString} OR subTitle:${newString} OR originalAuthor:${newString} OR modifierAuthor:${newString})`;
