@@ -36,12 +36,12 @@ const setCustomParams = (body) => {
         });
 
         wordsToFind.forEach(word => {
-             if (word.isIgnored) notIncluded = notIncluded + `\"${word.word}\"`;
+             if (word.isIgnored) newString = newString + ` AND NOT \"${word.word}\"`;
         });
         
         newString = newString.trim();
-        const allSearchs = `((content:*${newString}* AND -content: *${notIncluded}*) OR (title:*${newString}* AND -title: *${notIncluded}*) OR (subTitle:*${newString}* AND -subTitle: *${notIncluded}*) OR (originalAuthor:*${newString}* AND -originalAuthor: *${notIncluded}*) OR (modifierAuthor:*${newString}* AND -modifierAuthor:*${notIncluded}*))`;
-        customQuery = startQuery + allSearchs + notIncluded;
+        const allSearchs = `(content:*${newString}* OR title:*${newString}* OR subTitle:*${newString}* OR originalAuthor:*${newString}* OR modifierAuthor:*${newString}*)`;
+        customQuery = startQuery + allSearchs;
     }
 
     if (body.date && body.dateRange && !body.key) {
