@@ -77,7 +77,7 @@ const setCustomParams = (body) => {
 
     if(customQuery === startQuery) customQuery = startQuery + '*:*';
 
-    const rowsAndStart = `&rows=${body.cLimit}&start=${body.cSkip}`;
+    const rowsAndStart = `&rows=${body.cLimit}&start=${body.cSkip}&sort=${body.cSort === '1' ? 'customId asc' : 'customIdReverse asc'}`;
     if(customQuery === startQuery) {
         customQuery = startQuery + rowsAndStart;
     } else {
