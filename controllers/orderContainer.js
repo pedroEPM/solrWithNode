@@ -9,8 +9,10 @@ class OrderContainer {
     async sendInformationToSolr(req, res) {
         try {
             console.log(`-- Sending information to solr --`);
-            // for(let i = 1925; i <= 2024; i++) {
-            for(let i = 2024; i >= 1925; i--) {
+            // for(let i = 2015; i <= 2015; i++) {
+                // for(let i = 1925; i <= 2024; i++) {
+            
+            for(let i = 2014; i >= 1925; i--) {
                 console.log(`- ${i} -`);
 
                 const nextYear = i + 1;
@@ -25,8 +27,15 @@ class OrderContainer {
                 const getNotes = await allNotes.find(body);
                 const getOldNotes = await oldNotes.find(body);
 
-                for(const littleNote of getNotes) notes.push(setNote(littleNote));
-                for(const littleNote of getOldNotes) notes.push(setNote(littleNote));
+                for(const littleNote of getNotes) {
+
+                    // console.log(setNote(littleNote))
+                    notes.push(setNote(littleNote));
+                }
+                for(const littleNote of getOldNotes) {
+                    // console.log(setNote(littleNote))
+                    notes.push(setNote(littleNote));
+                }
 
                 for(const isNewNote of notes) {
                     isNewNote.date = isNewNote.date.setHours(0, 0, 0);
@@ -36,6 +45,8 @@ class OrderContainer {
                     isNewNote.LastModifyDate = new Date(isNewNote.LastModifyDate).toISOString();
 
                     await addNewItem(isNewNote);
+                    // await removeItemById(isNewNote.customId);
+
                 }
             }
 
