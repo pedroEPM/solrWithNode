@@ -32,6 +32,25 @@ const setNote = (littleNewData) => {
     }
 }
 
+const setDataBase = (type) => {
+    const selectDataBase = (cType) => {
+        switch(cType) {
+            case 'Notas':
+            return process.env.SOLR_CORE;
+        case 'Imagenes':
+            return process.env.SOLR_COREF;
+        case 'PDFs':
+            return process.env.SOLR_COREP;
+        }
+    }
+
+    return {
+        host: process.env.SOLR_HOST,
+        port: process.env.SOLR_PORT,
+        core: selectDataBase(type)
+        // path: 'http'
+    };
+}
 // Notas Imagenes PDFs
 
 const bodyFortype = (type) => {
@@ -72,5 +91,6 @@ const bodyFortype = (type) => {
 
 module.exports = {
     setNote,
-    bodyFortype
+    bodyFortype,
+    setDataBase
 }
