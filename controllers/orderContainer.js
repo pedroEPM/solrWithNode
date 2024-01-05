@@ -9,8 +9,8 @@ class OrderContainer {
     async sendInformationToSolr(req, res) {
         try {
             console.log(`-- Sending information to solr --`);
-            // for(let i = 1925; i <= 2024; i++) {
-            for(let i = 2024; i >= 1925; i--) {
+            for(let i = 1925; i <= 2024; i++) {
+            // for(let i = 2024; i >= 1925; i--) {
                 console.log(`- ${i} -`);
 
                 const nextYear = i + 1;
