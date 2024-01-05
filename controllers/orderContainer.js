@@ -28,11 +28,11 @@ class OrderContainer {
 
                 for(const littleNote of getNotes) {
 
-                    console.log(setNote(littleNote))
+                    // console.log(setNote(littleNote))
                     notes.push(setNote(littleNote));
                 }
                 for(const littleNote of getOldNotes) {
-                    console.log(setNote(littleNote))
+                    // console.log(setNote(littleNote))
                     notes.push(setNote(littleNote));
                 }
 
