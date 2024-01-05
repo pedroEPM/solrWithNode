@@ -32,6 +32,44 @@ const setNote = (littleNewData) => {
     }
 }
 
+const setImage = (littleNewData) => {
+    return {
+        id: Number(littleNewData.customId),
+        idMegamedia: `cIDM-${littleNewData.idMegamedia}` ?? null,
+        idOriginal: littleNewData.idOriginal ?? '',
+        sectionRef: littleNewData.sectionRef ?? null,
+        section: littleNewData.section ?? null,
+        editionRef: littleNewData.editionRef ?? null,
+        idNoticia: littleNewData.idNoticia ?? null,
+        photographer: littleNewData.photographer ?? null,
+        idAgency: littleNewData.idAgency ?? null,
+        clasificationRef: littleNewData.clasificationRef ?? null,
+        publicationRef: littleNewData.publicationRef ?? null,
+        noteBookRef: littleNewData.noteBookRef ?? null,
+        description: littleNewData.description ?? '',
+        place: littleNewData.place ?? '',
+        material: littleNewData.material ?? '',
+        publicationDate: littleNewData.publicationDate ?? new Date().toISOString(),
+        dateStringInfo: littleNewData.dateStringInfo ?? new Date(),
+        date: littleNewData.date ?? new Date().toISOString(),
+        origenDate: littleNewData.origenDate ?? new Date().toISOString(),
+        isPublished: littleNewData.isPublished ?? false,
+        isYearBook: littleNewData.isYearBook ?? false,
+        isSelleable: littleNewData.isSelleable ?? false,
+        observations: littleNewData.observations ?? '',
+        page: littleNewData.page ?? '0',
+        status: littleNewData.status ?? false,
+        externalFotographer: littleNewData.externalFotographer ?? '',
+        imageSrc: littleNewData.imageSrc ?? '',
+        folder: littleNewData.folder ?? '',
+        ImageTitle: littleNewData.ImageTitle ?? '',
+        isEditedByGalileo: littleNewData.isEditedByGalileo ?? false,
+        isNewId: littleNewData.isNewId,
+        customId: littleNewData.customId,
+        customIdReverse: littleNewData.customIdReverse,
+    }
+}
+
 const setDataBase = (type) => {
     const selectDataBase = (cType) => {
         switch(cType) {
