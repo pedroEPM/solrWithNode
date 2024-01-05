@@ -23,8 +23,8 @@ class OrderContainer {
                 }
 
                 const notes = [];
-                const getNotes = await allNotes.find(body).limit(2);
-                const getOldNotes = await oldNotes.find(body).limit(2);
+                const getNotes = await allNotes.find(body);
+                const getOldNotes = await oldNotes.find(body);
 
                 for(const littleNote of getNotes) {
 
