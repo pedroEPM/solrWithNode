@@ -5,6 +5,8 @@ class SolrConnection {
 
     async addNewItem(body) {
         try {
+
+            console.log(setDataBase(body.search))
             const client = solr.createClient(setDataBase(body.search));
             // console.log(`--- Adding new data ---`);
             const obj = await client.add(body);
