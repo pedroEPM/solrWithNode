@@ -1,7 +1,10 @@
 const allNotes = require('../models/allNotes');
 const oldNotes = require('../models/oldNotes2');
 
-const { setNote } = require('../utils/getBodys');
+const allImages = require('../models/Imagesc');
+const oldImages = require('../models/Imagesc2');
+
+const { setNote, setImage } = require('../utils/getBodys');
 const { setCustomParams } = require('../utils/setParams');
 const { addNewItem, removeItemById, customGet } = require('../utils/solr_connection');
 class OrderContainer {
@@ -17,34 +20,50 @@ class OrderContainer {
 
                 const nextYear = i + 1;
                 const body = {
-                    date: {
+                    publicationDate: {
+                    // date: {
                         $gte: new Date(`${i}-01-01`),
                         $lt: new Date(`${nextYear}-01-01`),
                     }
                 }
 
                 const notes = [];
-                const getNotes = await allNotes.find(body);
-                const getOldNotes = await oldNotes.find(body);
+                // const getNotes = await allNotes.find(body);
+                // const getOldNotes = await oldNotes.find(body);
+                const getNotes = await allImages.find(body);                
+                const getOldNotes = await oldImages.find(body);
 
                 for(const littleNote of getNotes) {
 
                     // console.log(setNote(littleNote))
-                    notes.push(setNote(littleNote));
+                    // notes.push(setNote(littleNote));
+                    notes.push(setImage(littleNote));
+
                 }
                 for(const littleNote of getOldNotes) {
                     // console.log(setNote(littleNote))
-                    notes.push(setNote(littleNote));
+                    // notes.push(setNote(littleNote));
+                    notes.push(setImage(littleNote));
                 }
 
                 for(const isNewNote of notes) {
-                    isNewNote.date = isNewNote.date.setHours(0, 0, 0);
+                    // NOTES
+                    // isNewNote.date = isNewNote.date.setHours(0, 0, 0);
+                    // isNewNote.LastModifyDate = isNewNote.LastModifyDate.setHours(0, 0, 0);
+                    
+                    // isNewNote.date = new Date(isNewNote.date).toISOString();
+                    // isNewNote.LastModifyDate = new Date(isNewNote.LastModifyDate).toISOString();
+
+
+                    // IMAGES
+                    isNewNote.publicationDate.setHours(0, 0, 0);
                     isNewNote.LastModifyDate = isNewNote.LastModifyDate.setHours(0, 0, 0);
                     
-                    isNewNote.date = new Date(isNewNote.date).toISOString();
+                    isNewNote.publicationDate = new Date(isNewNote.publicationDate).toISOString();
                     isNewNote.LastModifyDate = new Date(isNewNote.LastModifyDate).toISOString();
 
-                    await addNewItem(isNewNote);
+                    // await addNewItem(isNewNote, {search: 'Notas'});
+                    await addNewItem(isNewNote, {search: 'Imagenes'});
                     // await removeItemById(isNewNote.customId);
 
                 }

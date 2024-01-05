@@ -48,6 +48,7 @@ const setImage = (littleNewData) => {
         noteBookRef: littleNewData.noteBookRef ?? null,
         description: littleNewData.description ?? '',
         place: littleNewData.place ?? '',
+        LastModifyDate: new Date(littleNewData.LastModifyDate) ?? new Date().toISOString(),
         material: littleNewData.material ?? '',
         publicationDate: littleNewData.publicationDate ?? new Date().toISOString(),
         dateStringInfo: littleNewData.dateStringInfo ?? new Date(),
@@ -130,5 +131,6 @@ const bodyFortype = (type) => {
 module.exports = {
     setNote,
     bodyFortype,
-    setDataBase
+    setDataBase,
+    setImage
 }
