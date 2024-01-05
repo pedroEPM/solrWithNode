@@ -31,7 +31,45 @@ const setNote = (littleNewData) => {
     }
 }
 
+// Notas Imagenes PDFs
+
+const bodyFortype = (type) => {
+    switch(type) {
+        case 'Notas':
+            return {
+                date: 'date',
+                publication: 'publicationRef',
+                notebook: 'noteBookRef',
+                whereSearch: [
+                    'content',
+                    'title',
+                    'subTitle',
+                    'originalAuthor',
+                    'modifierAuthor',
+                ]
+            };
+        case 'Imagenes':
+            return {
+                date: 'publicationDate',
+                publication: 'publicationRef',
+                notebook: 'noteBookRef',
+                whereSearch: [
+                    'description',
+                    'place',
+                    'material',
+                    'observations',
+                ],
+            };
+        case 'PDFs':
+            return {
+                date: 'datePublication',
+                publication: 'publication',
+                notebook: 'noteBook'
+            };
+    }
+}
 
 module.exports = {
-    setNote
+    setNote,
+    bodyFortype
 }

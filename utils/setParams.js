@@ -1,7 +1,9 @@
 const { removeAccents } = require('./setFlatText');
+const { bodyFortype } = require('./getBodys');
 
 const setCustomParams = (body) => {
-    
+
+    const cBodyForType = bodyFortype(body.search);
     const startQuery = 'q=';
     let customQuery = startQuery;
     const wordsToFind = [];
@@ -29,13 +31,7 @@ const setCustomParams = (body) => {
 
 
     let notIncluded = '';
-    const whereSearch = [
-        'content',
-        'title',
-        'subTitle',
-        'originalAuthor',
-        'modifierAuthor',
-    ];
+    const whereSearch = cBodyForType.whereSearch;
 
     if (wordsToFind.length > 0) {
         let newString = '';
@@ -61,7 +57,7 @@ const setCustomParams = (body) => {
         let secondDate = new Date(body.date).setHours(23, 59, 59);
         firstDate = new Date(firstDate).toISOString();
         secondDate = new Date(secondDate).toISOString();
-        const customDate = `date:[${firstDate} TO ${secondDate}]`;
+        const customDate = `${cBodyForType.date}:[${firstDate} TO ${secondDate}]`;
         if(customQuery === startQuery){
             customQuery = startQuery + customDate;
         } else {
@@ -71,7 +67,7 @@ const setCustomParams = (body) => {
     }
 
     if (body.publicationRef && !body.key) {
-        const findByPublication = `publicationRef:${body.publicationRef}`;
+        const findByPublication = `${cBodyForType.publication}:${body.publicationRef}`;
         if(customQuery === startQuery){
             customQuery = startQuery + findByPublication;
         } else {
@@ -80,7 +76,7 @@ const setCustomParams = (body) => {
     }
 
     if (body.noteBookRef && !body.key) {
-        const findByNotebook = `noteBookRef:${body.noteBookRef}`;
+        const findByNotebook = `${cBodyForType.notebook}:${body.noteBookRef}`;
         if(customQuery === startQuery){
             customQuery = startQuery + findByNotebook;
         } else {
