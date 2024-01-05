@@ -90,9 +90,6 @@ const setCustomParams = (body) => {
 
     if(customQuery === startQuery) customQuery = startQuery + '*:*';
 
-
-    console.log(body.cSort)
-    console.log(typeof body.cSort)
     const rowsAndStart = `&rows=${body.cLimit}&start=${body.cSkip}&sort=${body.cSort === -1 ? 'customId asc' : 'customIdReverse asc'}`;
     if(customQuery === startQuery) {
         customQuery = startQuery + rowsAndStart;
