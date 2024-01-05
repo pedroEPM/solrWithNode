@@ -1,7 +1,7 @@
 const setNote = (littleNewData) => {
     return {
         id: Number(littleNewData.customId),
-        _id: littleNewData._id,
+        _id: littleNewData.customId,
         anuary: littleNewData.anuary ?? false,
         content: littleNewData.content ?? '',
         // customId: segundoID,

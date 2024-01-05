@@ -11,7 +11,7 @@ class OrderContainer {
             console.log(`-- Sending information to solr --`);
             // for(let i = 2015; i <= 2015; i++) {
                 // for(let i = 1925; i <= 2024; i++) {
-            for(let i = 2024; i >= 1930; i--) {
+            for(let i = 1930; i >= 1930; i--) {
                 console.log(`- ${i} -`);
 
                 const nextYear = i + 1;
@@ -23,15 +23,18 @@ class OrderContainer {
                 }
 
                 const notes = [];
-                const getNotes = await allNotes.find(body);
-                const getOldNotes = await oldNotes.find(body);
+                const getNotes = await allNotes.find(body).limit(1);
+                const getOldNotes = await oldNotes.find(body).limit(1);
 
                 for(const littleNote of getNotes) {
 
-                    // console.log(setNote(littleNote))
+                    console.log(setNote(littleNote))
                     notes.push(setNote(littleNote));
                 }
-                for(const littleNote of getOldNotes) notes.push(setNote(littleNote));
+                for(const littleNote of getOldNotes) {
+                    console.log(setNote(littleNote))
+                    notes.push(setNote(littleNote));
+                }
 
                 for(const isNewNote of notes) {
                     isNewNote.date = isNewNote.date.setHours(0, 0, 0);
