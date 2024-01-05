@@ -73,7 +73,7 @@ class OrderContainer {
 
             const newParams = setCustomParams(req.body);
  
-            const newData = await customGet(newParams);
+            const newData = await customGet(newParams, req.body);
 
             if(req.body.firstTimeSearch === 'false') {
                 newData?.response?.docs?.map(littleData => {

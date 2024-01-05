@@ -34,9 +34,9 @@ class SolrConnection {
         }
     }
 
-    async customGet(body) {
+    async customGet(body, oldBody) {
         try {
-            const client = solr.createClient(setDataBase(body.search));
+            const client = solr.createClient(setDataBase(oldBody.search));
 
             return await client.search(body);
             // return await client.doQuery()
