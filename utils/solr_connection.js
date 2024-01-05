@@ -3,10 +3,10 @@ const { setDataBase } = require('./getBodys');
 
 class SolrConnection {
 
-    async addNewItem(body) {
+    async addNewItem(body, oldBody) {
         try {
 
-            const client = solr.createClient(setDataBase(body.search));
+            const client = solr.createClient(setDataBase(oldBody.search));
             // console.log(`--- Adding new data ---`);
             const obj = await client.add(body);
             // console.log(`--- Data added ---`)
@@ -35,9 +35,6 @@ class SolrConnection {
 
     async customGet(body, oldBody) {
         try {
-            console.log('-------------------------------')
-            console.log(setDataBase(oldBody.search))
-            console.log('-------------------------------')
             const client = solr.createClient(setDataBase(oldBody.search));
 
             return await client.search(body);
