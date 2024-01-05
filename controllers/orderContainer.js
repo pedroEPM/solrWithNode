@@ -44,8 +44,8 @@ class OrderContainer {
                     isNewNote.date = new Date(isNewNote.date).toISOString();
                     isNewNote.LastModifyDate = new Date(isNewNote.LastModifyDate).toISOString();
 
-                    // await addNewItem(isNewNote);
-                    await removeItemById(isNewNote.customId);
+                    await addNewItem(isNewNote);
+                    // await removeItemById(isNewNote.customId);
 
                 }
             }
