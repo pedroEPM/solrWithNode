@@ -26,7 +26,7 @@ class SolrConnection {
         try {
             console.log(`--- Deleting new data ---`);
             const field = 'id';
-            id = '*';
+            // id = '*';
             const obj = await client.delete(field, id);
             console.log(`--- Data deleted ---`)
 

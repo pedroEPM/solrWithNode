@@ -11,43 +11,44 @@ class OrderContainer {
             console.log(`-- Sending information to solr --`);
             // for(let i = 2015; i <= 2015; i++) {
                 // for(let i = 1925; i <= 2024; i++) {
-            for(let i = 2015; i >= 2015; i--) {
-                console.log(`- ${i} -`);
+            
+            // for(let i = 2015; i >= 2015; i--) {
+            //     console.log(`- ${i} -`);
 
-                const nextYear = i + 1;
-                const body = {
-                    date: {
-                        $gte: new Date(`${i}-01-01`),
-                        $lt: new Date(`${nextYear}-01-01`),
-                    }
-                }
+            //     const nextYear = i + 1;
+            //     const body = {
+            //         date: {
+            //             $gte: new Date(`${i}-01-01`),
+            //             $lt: new Date(`${nextYear}-01-01`),
+            //         }
+            //     }
 
-                const notes = [];
-                const getNotes = await allNotes.find(body).limit(1);
-                const getOldNotes = await oldNotes.find(body).limit(1);
+            //     const notes = [];
+            //     const getNotes = await allNotes.find(body);
+            //     const getOldNotes = await oldNotes.find(body);
 
-                for(const littleNote of getNotes) {
+            //     for(const littleNote of getNotes) {
 
-                    // console.log(setNote(littleNote))
-                    notes.push(setNote(littleNote));
-                }
-                for(const littleNote of getOldNotes) {
-                    // console.log(setNote(littleNote))
-                    notes.push(setNote(littleNote));
-                }
+            //         // console.log(setNote(littleNote))
+            //         notes.push(setNote(littleNote));
+            //     }
+            //     for(const littleNote of getOldNotes) {
+            //         // console.log(setNote(littleNote))
+            //         notes.push(setNote(littleNote));
+            //     }
 
-                for(const isNewNote of notes) {
-                    isNewNote.date = isNewNote.date.setHours(0, 0, 0);
-                    isNewNote.LastModifyDate = isNewNote.LastModifyDate.setHours(0, 0, 0);
+            //     for(const isNewNote of notes) {
+            //         isNewNote.date = isNewNote.date.setHours(0, 0, 0);
+            //         isNewNote.LastModifyDate = isNewNote.LastModifyDate.setHours(0, 0, 0);
                     
-                    isNewNote.date = new Date(isNewNote.date).toISOString();
-                    isNewNote.LastModifyDate = new Date(isNewNote.LastModifyDate).toISOString();
+            //         isNewNote.date = new Date(isNewNote.date).toISOString();
+            //         isNewNote.LastModifyDate = new Date(isNewNote.LastModifyDate).toISOString();
 
-                    await addNewItem(isNewNote);
-                }
-            }
+            //         await addNewItem(isNewNote);
+            //     }
+            // }
 
-            // await removeItemById();
+            await removeItemById(10612);
             res.status(200).json({
                 ok: true,
                 msg: 'Added all items'
