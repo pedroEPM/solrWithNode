@@ -11,7 +11,7 @@ class OrderContainer {
             console.log(`-- Sending information to solr --`);
             // for(let i = 2015; i <= 2015; i++) {
                 // for(let i = 1925; i <= 2024; i++) {
-            for(let i = 1930; i >= 1930; i--) {
+            for(let i = 2015; i >= 2015; i--) {
                 console.log(`- ${i} -`);
 
                 const nextYear = i + 1;
