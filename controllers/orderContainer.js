@@ -31,21 +31,20 @@ class OrderContainer {
                 const notes = [];
                 // const getNotes = await allNotes.find(body);
                 // const getOldNotes = await oldNotes.find(body);
-                // const getNotes = await allImages.find(body).limit(1);                
-                const getOldNotes = await oldImages.find(body).limit(1);
+                const getNotes = await allImages.find(body).limit(1);                
+                // const getOldNotes = await oldImages.find(body).limit(1);
 
-                // for(const littleNote of getNotes) {
-
-                //     // console.log(setNote(littleNote))
-                //     // notes.push(setNote(littleNote));
-                //     notes.push(setImage(littleNote));
-
-                // }
-                for(const littleNote of getOldNotes) {
+                for(const littleNote of getNotes) {
                     // console.log(setNote(littleNote))
                     // notes.push(setNote(littleNote));
                     notes.push(setImage(littleNote));
                 }
+
+                // for(const littleNote of getOldNotes) {
+                //     // console.log(setNote(littleNote))
+                //     // notes.push(setNote(littleNote));
+                //     notes.push(setImage(littleNote));
+                // }
 
                 for(const isNewNote of notes) {
 
