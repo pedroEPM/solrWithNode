@@ -47,6 +47,9 @@ class OrderContainer {
                 }
 
                 for(const isNewNote of notes) {
+
+                    console.log(isNewNote)
+
                     // NOTES
                     // isNewNote.date = isNewNote.date.setHours(0, 0, 0);
                     // isNewNote.LastModifyDate = isNewNote.LastModifyDate.setHours(0, 0, 0);
