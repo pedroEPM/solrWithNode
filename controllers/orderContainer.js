@@ -12,10 +12,10 @@ class OrderContainer {
     async sendInformationToSolr(req, res) {
         try {
             console.log(`-- Sending information to solr --`);
-            // for(let i = 2015; i <= 2015; i++) {
+            for(let i = 1930; i <= 1930; i++) {
                 // for(let i = 1925; i <= 2024; i++) {
             
-            for(let i = 2014; i >= 1925; i--) {
+            // for(let i = 2014; i >= 1925; i--) {
                 console.log(`- ${i} -`);
 
                 const nextYear = i + 1;
@@ -30,8 +30,8 @@ class OrderContainer {
                 const notes = [];
                 // const getNotes = await allNotes.find(body);
                 // const getOldNotes = await oldNotes.find(body);
-                const getNotes = await allImages.find(body);                
-                const getOldNotes = await oldImages.find(body);
+                const getNotes = await allImages.find(body).limit(1);                
+                const getOldNotes = await oldImages.find(body).limit(1);
 
                 for(const littleNote of getNotes) {
 
