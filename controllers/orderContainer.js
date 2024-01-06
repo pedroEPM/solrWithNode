@@ -71,7 +71,7 @@ class OrderContainer {
                 }
             }
 
-            await removeItemById(1405269, {search: 'Imagenes'});
+            await removeItemById(1398021, {search: 'Imagenes'});
             res.status(200).json({
                 ok: true,
                 msg: 'Added all items'
