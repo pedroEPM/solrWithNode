@@ -12,10 +12,10 @@ class OrderContainer {
     async sendInformationToSolr(req, res) {
         try {
             console.log(`-- Sending information to solr --`);
-            for(let i = 2005; i <= 2005; i++) {
+            // for(let i = 2005; i <= 2005; i++) {
                 // for(let i = 1925; i <= 2024; i++) {
             
-            // for(let i = 2014; i >= 1925; i--) {
+            for(let i = 2024; i >= 2015; i--) {
                 console.log(`- ${i} -`);
 
                 const nextYear = i + 1;
@@ -24,15 +24,14 @@ class OrderContainer {
                     // date: {
                         $gte: new Date(`${i}-01-01`),
                         $lt: new Date(`${nextYear}-01-01`),
-                    },
-                    isNewId: {$ne: null}
+                    }, 
                 }
 
                 const notes = [];
                 // const getNotes = await allNotes.find(body);
                 // const getOldNotes = await oldNotes.find(body);
-                const getNotes = await allImages.find(body).limit(1);                
-                // const getOldNotes = await oldImages.find(body).limit(1);
+                const getNotes = await allImages.find(body);                
+                const getOldNotes = await oldImages.find(body);
 
                 for(const littleNote of getNotes) {
                     // console.log(setNote(littleNote))
@@ -40,11 +39,11 @@ class OrderContainer {
                     notes.push(setImage(littleNote));
                 }
 
-                // for(const littleNote of getOldNotes) {
-                //     // console.log(setNote(littleNote))
-                //     // notes.push(setNote(littleNote));
-                //     notes.push(setImage(littleNote));
-                // }
+                for(const littleNote of getOldNotes) {
+                    // console.log(setNote(littleNote))
+                    // notes.push(setNote(littleNote));
+                    notes.push(setImage(littleNote));
+                }
 
                 for(const isNewNote of notes) {
  
