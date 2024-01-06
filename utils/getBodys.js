@@ -68,6 +68,8 @@ const setImage = (littleNewData) => {
         isNewId: littleNewData.isNewId,
         customId: littleNewData.customId,
         customIdReverse: littleNewData.customIdReverse,
+        odPdfName: littleNewData.odPdfName,
+
     }
 }
 
