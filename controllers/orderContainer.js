@@ -12,7 +12,7 @@ class OrderContainer {
     async sendInformationToSolr(req, res) {
         try {
             console.log(`-- Sending information to solr --`);
-            for(let i = 1930; i <= 1930; i++) {
+            for(let i = 1940; i <= 1940; i++) {
                 // for(let i = 1925; i <= 2024; i++) {
             
             // for(let i = 2014; i >= 1925; i--) {
