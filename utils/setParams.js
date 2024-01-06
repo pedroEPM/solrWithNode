@@ -93,7 +93,7 @@ const setCustomParams = (body) => {
         customQuery = customQuery + rowsAndStart;
     }
 
-    console.log(customQuery);
+    if(body.firstTimeSearch === 'false') console.log(customQuery);
 
     customQuery = customQuery
                         .replaceAll(' ', '%20')
