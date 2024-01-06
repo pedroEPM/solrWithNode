@@ -59,6 +59,7 @@ const Imagesc = new Schema({
     customIdReverse: { type: Number},
     customId: { type: Number}, 
 
+    isNewId: { type: String },
 
 
     // olddescription: { type: String },
