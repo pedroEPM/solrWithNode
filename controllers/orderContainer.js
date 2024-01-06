@@ -12,7 +12,7 @@ class OrderContainer {
     async sendInformationToSolr(req, res) {
         try {
             console.log(`-- Sending information to solr --`);
-            for(let i = 1940; i <= 1940; i++) {
+            for(let i = 1989; i <= 1989; i++) {
                 // for(let i = 1925; i <= 2024; i++) {
             
             // for(let i = 2014; i >= 1925; i--) {
@@ -24,7 +24,8 @@ class OrderContainer {
                     // date: {
                         $gte: new Date(`${i}-01-01`),
                         $lt: new Date(`${nextYear}-01-01`),
-                    }
+                    },
+                    isNewId: {$ne: null}
                 }
 
                 const notes = [];
@@ -60,10 +61,10 @@ class OrderContainer {
 
                     // IMAGES
                     isNewNote.publicationDate.setHours(0, 0, 0);
-                    isNewNote.LastModifyDate = isNewNote.LastModifyDate.setHours(0, 0, 0);
+                    // isNewNote.LastModifyDate = isNewNote.LastModifyDate.setHours(0, 0, 0);
                     
                     isNewNote.publicationDate = new Date(isNewNote.publicationDate).toISOString();
-                    isNewNote.LastModifyDate = new Date(isNewNote.LastModifyDate).toISOString();
+                    // isNewNote.LastModifyDate = new Date(isNewNote.LastModifyDate).toISOString();
 
                     // await addNewItem(isNewNote, {search: 'Notas'});
                     await addNewItem(isNewNote, {search: 'Imagenes'});
