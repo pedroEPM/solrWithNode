@@ -95,7 +95,7 @@ const setCustomParams = (body) => {
         customQuery = customQuery + rowsAndStart;
     }
 
-    // if(body.search === 'PDFs') customQuery = customQuery + returnOnlyPDF;
+    if(body.search === 'PDFs') customQuery = customQuery + returnOnlyPDF;
 
     if(body.firstTimeSearch === 'false') console.log(customQuery);
 
