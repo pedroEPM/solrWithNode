@@ -78,11 +78,12 @@ const setDataBase = (type) => {
     const selectDataBase = (cType) => {
         switch(cType) {
             case 'Notas':
-            return process.env.SOLR_CORE;
-        case 'Imagenes':
-            return process.env.SOLR_COREF;
-        case 'PDFs':
-            return process.env.SOLR_COREP;
+                return process.env.SOLR_CORE;
+            case 'Imagenes':
+                return process.env.SOLR_COREF;
+            case 'PDFs':
+                return process.env.SOLR_CORE;
+                // return process.env.SOLR_COREP;
         }
     }
 
