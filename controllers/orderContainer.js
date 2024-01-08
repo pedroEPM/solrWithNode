@@ -15,7 +15,8 @@ class OrderContainer {
             // for(let i = 2005; i <= 2005; i++) {
                 // for(let i = 1925; i <= 2024; i++) {
             
-            for(let i = 1930; i >= 1930; i--) {
+            for(let i = 2024; i >= 2016; i--) {
+            // for(let i = 1930; i >= 1930; i--) {
                 console.log(`- ${i} -`);
 
                 const nextYear = i + 1;
@@ -64,8 +65,8 @@ class OrderContainer {
                     // isNewNote.LastModifyDate = new Date(isNewNote.LastModifyDate).toISOString();
 
                     // await addNewItem(isNewNote, {search: 'Notas'});
-                    await addNewItem(isNewNote, {search: 'Imagenes'});
-                    // await removeItemById(isNewNote.customId, {search: 'Imagenes'});
+                    // await addNewItem(isNewNote, {search: 'Imagenes'});
+                    await removeItemById(isNewNote.customId, {search: 'Imagenes'});
                     
 
                 }
