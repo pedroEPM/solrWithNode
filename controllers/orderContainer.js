@@ -66,7 +66,7 @@ class OrderContainer {
 
                     // await addNewItem(isNewNote, {search: 'Notas'});
                     // await addNewItem(isNewNote, {search: 'Imagenes'});
-                    await removeItemById(isNewNote.customId, {search: 'Imagenes'});
+                    // await removeItemById(isNewNote.customId, {search: 'Imagenes'});
                     // console.log('ok')
                     
 
@@ -74,6 +74,7 @@ class OrderContainer {
             }
 
             await removeItemById(2262309, {search: 'Imagenes'});
+            console.log('m')
             res.status(200).json({
                 ok: true,
                 msg: 'Added all items'
