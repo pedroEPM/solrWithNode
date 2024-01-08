@@ -126,7 +126,14 @@ const bodyFortype = (type) => {
             return {
                 date: 'datePublication',
                 publication: 'publication',
-                notebook: 'noteBook'
+                notebook: 'noteBook',
+                whereSearch: [
+                    'content',
+                    'title',
+                    'subTitle',
+                    'originalAuthor',
+                    'modifierAuthor',
+                ]
             };
     }
 }
