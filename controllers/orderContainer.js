@@ -65,7 +65,7 @@ class OrderContainer {
                     // isNewNote.LastModifyDate = new Date(isNewNote.LastModifyDate).toISOString();
 
                     // await addNewItem(isNewNote, {search: 'Notas'});
-                    // await addNewItem(isNewNote, {search: 'Imagenes'});
+                    await addNewItem(isNewNote, {search: 'Imagenes'});
                     // await removeItemById(isNewNote.customId, {search: 'Imagenes'});
                     // console.log('ok')
                     
@@ -73,7 +73,7 @@ class OrderContainer {
                 }
             }
 
-            await removeItemById(2262309, {search: 'Imagenes'});
+            // await removeItemById(2262309, {search: 'Imagenes'});
             console.log('m')
             res.status(200).json({
                 ok: true,
