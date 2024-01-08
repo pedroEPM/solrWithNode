@@ -88,7 +88,7 @@ const setCustomParams = (body) => {
 
 
     const returnOnlyPDF = '&fl=date%20publicationRef%20notebookRef%20page'
-    const rowsAndStart = `&rows=${body.cLimit}&start=${body.cSkip}&sort=${body.cSort === -1 ? 'customId asc' : 'customIdReverse asc'}`;
+    const rowsAndStart = `&rows=${body.cLimit}&start=${body.cSkip}&sort=${body.cSort === -1 ? 'customId%20asc' : 'customIdReverse%20asc'}`;
     if(customQuery === startQuery) {
         customQuery = startQuery + rowsAndStart;
     } else {
