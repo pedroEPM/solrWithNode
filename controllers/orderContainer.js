@@ -32,12 +32,12 @@ class OrderContainer {
                 // const getNotes = await allNotes.find(body);
                 // const getOldNotes = await oldNotes.find(body);
                 const getNotes = await allImages.find(body);                
-                const getOldNotes = await oldImages.find(body).limit(2);
+                const getOldNotes = await oldImages.find(body);
 
                 for(const littleNote of getNotes) {
                     // console.log(setNote(littleNote))
                     // notes.push(setNote(littleNote));
-                    // notes.push(setImage(littleNote));
+                    notes.push(setImage(littleNote));
                 }
 
                 for(const littleNote of getOldNotes) {
