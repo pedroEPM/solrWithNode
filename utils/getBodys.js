@@ -35,6 +35,7 @@ const setNote = (littleNewData) => {
 const setImage = (littleNewData) => {
     return {
         id: Number(littleNewData.customId),
+        _id: littleNewData._id,
         idMegamedia: `cIDM-${littleNewData.idMegamedia}` ?? null,
         idOriginal: littleNewData.idOriginal ?? '',
         sectionRef: littleNewData.sectionRef ?? null,
