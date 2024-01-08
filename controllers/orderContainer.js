@@ -15,8 +15,8 @@ class OrderContainer {
             // for(let i = 2005; i <= 2005; i++) {
                 // for(let i = 1925; i <= 2024; i++) {
             
-            for(let i = 2024; i >= 2016; i--) {
-            // for(let i = 1930; i >= 1930; i--) {
+            // for(let i = 2024; i >= 2016; i--) {
+            for(let i = 1930; i >= 1930; i--) {
                 console.log(`- ${i} -`);
 
                 const nextYear = i + 1;
@@ -32,12 +32,12 @@ class OrderContainer {
                 // const getNotes = await allNotes.find(body);
                 // const getOldNotes = await oldNotes.find(body);
                 const getNotes = await allImages.find(body);                
-                const getOldNotes = await oldImages.find(body);
+                const getOldNotes = await oldImages.find(body).limit(2);
 
                 for(const littleNote of getNotes) {
                     // console.log(setNote(littleNote))
                     // notes.push(setNote(littleNote));
-                    notes.push(setImage(littleNote));
+                    // notes.push(setImage(littleNote));
                 }
 
                 for(const littleNote of getOldNotes) {
