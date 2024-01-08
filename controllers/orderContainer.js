@@ -66,6 +66,7 @@ class OrderContainer {
 
                     // await addNewItem(isNewNote, {search: 'Notas'});
                     await addNewItem(isNewNote, {search: 'Imagenes'});
+                    console.log('ok')
                     // await removeItemById(isNewNote.customId, {search: 'Imagenes'});
                     
 
