@@ -89,7 +89,8 @@ const setCustomParams = (body) => {
 
 
 
-    const returnOnlyPDF = '&fl=date publicationRef notebookRef page'
+    const returnOnlyPDF = '&fl=idMongoPDF'
+    // const returnOnlyPDF = '&fl=date publicationRef notebookRef page'
     const rowsAndStart = `&rows=${body.cLimit}&start=${body.cSkip}&sort=${body.cSort === -1 ? 'customId asc' : 'customIdReverse asc'}`;
     if(customQuery === startQuery) {
         customQuery = startQuery + rowsAndStart;
@@ -97,7 +98,7 @@ const setCustomParams = (body) => {
         customQuery = customQuery + rowsAndStart;
     }
 
-    // if(body.search === 'PDFs') customQuery = customQuery + returnOnlyPDF;
+    if(body.search === 'PDFs') customQuery = customQuery + returnOnlyPDF;
 
     if(body.firstTimeSearch === 'false') console.log(customQuery);
 
