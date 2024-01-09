@@ -42,5 +42,6 @@ const notesContainer07 = new Schema({
     odPdfName: {type: String},
     pdfNameChecked: {type: Boolean},
     customIdReverse: { type: Number},
+    idMongoPDF: { type: String }
 })
 module.exports = model('oldNotes2', notesContainer07)

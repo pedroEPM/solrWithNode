@@ -4,6 +4,8 @@ const oldNotes = require('../models/oldNotes2');
 const allImages = require('../models/Imagesc');
 const oldImages = require('../models/Imagesc2');
 
+const oldPDFs = require('../models/pdf2222222');
+
 const { setNote, setImage } = require('../utils/getBodys');
 const { setCustomParams } = require('../utils/setParams');
 const { addNewItem, removeItemById, customGet } = require('../utils/solr_connection');
@@ -120,6 +122,51 @@ class OrderContainer {
             }
         } catch (error) {
             console.log(`--- Error from getAllItems OrderContainer ---`);
+            console.log(error);
+            res.status(500).json({
+                ok: false,
+                msg: error
+            });
+        }
+    }
+
+    async setIDFromPDFToNote(req, res) {
+        try {
+            console.log('Starting set items');
+            for(let i = 2000; i >= 1925; i--){
+                // oldNotes
+                // oldPDFs
+
+                const newBody = {
+                    date: {
+                        $gte: new Date(`${i}-01-01`),
+                        $lt: new Date(`${i + 1 }-12-31`)
+                    }
+                }
+
+                const customNotes = await oldNotes.find(newBody);
+
+                for(const littleCustomNotes of customNotes) {
+                    const onlyPDF = await oldPDFs.find({idNoticia: littleCustomNotes.idMegamedia })[0];
+
+                    if(onlyPDF) {
+                        const notesForSolr = setNote(littleCustomNotes);
+                        littleCustomNotes.idMongoPDF = notesForSolr.idMongoPDF = onlyPDF._id;
+
+                        await removeItemById(littleCustomNotes.customId, {search: 'Notas'});
+                        await addNewItem(notesForSolr, {search: 'Notas'});
+                        await littleCustomNotes.save();
+    
+                    }
+                }
+            }
+
+            res.status(200).json({
+                ok: true,
+                data: newData?.response?.numFound
+            });
+        } catch (error) {
+            console.log(`--- Error from set ID From pdfs to note ---`);
             console.log(error);
             res.status(500).json({
                 ok: false,
