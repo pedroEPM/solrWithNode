@@ -29,8 +29,6 @@ const setCustomParams = (body) => {
         wordsToFind.push({ isIgnored: false, word: removeAccents(body.keysentence).replace(/\s+/g, ' ').toLowerCase().trim() });
     }
 
-
-    let notIncluded = '';
     const whereSearch = cBodyForType.whereSearch;
 
     if (wordsToFind.length > 0) {
@@ -50,6 +48,7 @@ const setCustomParams = (body) => {
         
         newString = newString.trim();
         customQuery = startQuery + '(' + newString + ')';
+
     }
 
     if (body.date && body.dateRange && !body.key) {
@@ -86,12 +85,17 @@ const setCustomParams = (body) => {
 
     if(customQuery === startQuery) customQuery = startQuery + '*:*';
 
-    const rowsAndStart = `&rows=${body.cLimit}&start=${body.cSkip}&sort=${body.cSort === -1 ? 'customId asc' : 'customIdReverse asc'}`;
+
+
+    const returnOnlyPDF = '&fl=date%20publicationRef%20notebookRef%20page'
+    const rowsAndStart = `&rows=${body.cLimit}&start=${body.cSkip}&sort=${body.cSort === -1 ? 'customId%20asc' : 'customIdReverse%20asc'}`;
     if(customQuery === startQuery) {
         customQuery = startQuery + rowsAndStart;
     } else {
         customQuery = customQuery + rowsAndStart;
     }
+
+    // if(body.search === 'PDFs') customQuery = customQuery + returnOnlyPDF;
 
     if(body.firstTimeSearch === 'false') console.log(customQuery);
 
