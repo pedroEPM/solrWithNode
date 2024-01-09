@@ -49,6 +49,8 @@ const setCustomParams = (body) => {
         newString = newString.trim();
         customQuery = startQuery + '(' + newString + ')';
 
+
+        if(body.search === 'PDFs') customQuery = customQuery + ' AND NOT idMongoPDF:null'
     }
 
     if (body.date && body.dateRange && !body.key) {
@@ -87,8 +89,8 @@ const setCustomParams = (body) => {
 
 
 
-    const returnOnlyPDF = '&fl=date%20publicationRef%20notebookRef%20page'
-    const rowsAndStart = `&rows=${body.cLimit}&start=${body.cSkip}&sort=${body.cSort === -1 ? 'customId%20asc' : 'customIdReverse%20asc'}`;
+    const returnOnlyPDF = '&fl=date publicationRef notebookRef page'
+    const rowsAndStart = `&rows=${body.cLimit}&start=${body.cSkip}&sort=${body.cSort === -1 ? 'customId asc' : 'customIdReverse asc'}`;
     if(customQuery === startQuery) {
         customQuery = startQuery + rowsAndStart;
     } else {
