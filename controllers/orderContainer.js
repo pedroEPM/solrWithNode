@@ -134,6 +134,7 @@ class OrderContainer {
         try {
             console.log('Starting set items');
             for(let i = 2000; i >= 1925; i--){
+                console.log(`--- ${i} ---`);
                 // oldNotes
                 // oldPDFs
 
@@ -145,7 +146,10 @@ class OrderContainer {
                 }
 
                 const customNotes = await oldNotes.find(newBody);
+                console.log(`--- length - ${customNotes.length} ---`);
 
+
+                let counter = 0;
                 for(const littleCustomNotes of customNotes) {
                     const onlyPDF = await oldPDFs.find({idNoticia: littleCustomNotes.idMegamedia })[0];
 
@@ -156,14 +160,16 @@ class OrderContainer {
                         await removeItemById(littleCustomNotes.customId, {search: 'Notas'});
                         await addNewItem(notesForSolr, {search: 'Notas'});
                         await littleCustomNotes.save();
-    
+                        counter++;
                     }
                 }
+                console.log(`--- ${counter} de ${customNotes.length} ---`);
+
             }
 
             res.status(200).json({
                 ok: true,
-                data: newData?.response?.numFound
+                // data: newData?.response?.numFound
             });
         } catch (error) {
             console.log(`--- Error from set ID From pdfs to note ---`);
