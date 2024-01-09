@@ -151,9 +151,10 @@ class OrderContainer {
 
                     let counter = 0;
                     for(const littleCustomNotes of customNotes) {
-                        const onlyPDF = await oldPDFs.find({idNoticia: littleCustomNotes.idMegamedia })[0];
-                        console.log(onlyPDF)
-                        if(onlyPDF) {
+                        const onlyPDF = await oldPDFs.find({idNoticia: littleCustomNotes.idMegamedia });
+                        const onePDf = onlyPDF[0] ?? undefined;
+                        console.log(onePDf)
+                        if(onePDf) {
                             // const notesForSolr = setNote(littleCustomNotes);
                             // littleCustomNotes.idMongoPDF = notesForSolr.idMongoPDF = onlyPDF._id;
 
