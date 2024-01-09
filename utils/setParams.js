@@ -47,10 +47,12 @@ const setCustomParams = (body) => {
         newString = newString.replaceAll(')(', ') OR (');
         
         newString = newString.trim();
-        customQuery = startQuery + '(' + newString + ')';
+        if(body.search === 'PDFs') {
 
-
-        if(body.search === 'PDFs') customQuery = 'NOT idMongoPDF:null AND ' + customQuery
+            customQuery = startQuery + 'NOT idMongoPDF:null AND' + '(' + newString + ')';
+        } else {
+            customQuery = startQuery + '(' + newString + ')';
+        }
     }
 
     if (body.date && body.dateRange && !body.key) {
