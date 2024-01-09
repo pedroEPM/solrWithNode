@@ -50,7 +50,7 @@ const setCustomParams = (body) => {
         if(body.search === 'PDFs') {
             
             // customQuery = startQuery + 'exists(idMongoPDF) AND NOT idMongoPDF:null AND ' + '(' + newString + ')';
-            customQuery = startQuery + 'NOT idMongoPDF:null AND' + '(' + newString + ')';
+            customQuery = startQuery + 'NOT idMongoPDF:undefined  AND' + '(' + newString + ')';
         } else {
             customQuery = startQuery + '(' + newString + ')';
         }
