@@ -50,7 +50,7 @@ const setCustomParams = (body) => {
         customQuery = startQuery + '(' + newString + ')';
 
 
-        if(body.search === 'PDFs') customQuery = customQuery + ' AND NOT idMongoPDF:null'
+        if(body.search === 'PDFs') customQuery = 'NOT idMongoPDF:null AND ' + customQuery
     }
 
     if (body.date && body.dateRange && !body.key) {
