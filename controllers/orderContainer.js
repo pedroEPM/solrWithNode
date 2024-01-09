@@ -153,15 +153,15 @@ class OrderContainer {
                     for(const littleCustomNotes of customNotes) {
                         const onlyPDF = await oldPDFs.find({idNoticia: littleCustomNotes.idMegamedia });
                         const onePDf = onlyPDF[0] ?? undefined;
-                        console.log(onePDf)
+                         
                         if(onePDf) {
-                            // const notesForSolr = setNote(littleCustomNotes);
-                            // littleCustomNotes.idMongoPDF = notesForSolr.idMongoPDF = onlyPDF._id;
+                            const notesForSolr = setNote(littleCustomNotes);
+                            littleCustomNotes.idMongoPDF = notesForSolr.idMongoPDF = onePDf._id;
 
-                            // await removeItemById(littleCustomNotes.customId, {search: 'Notas'});
-                            // await addNewItem(notesForSolr, {search: 'Notas'});
-                            // await littleCustomNotes.save();
-                            // counter++;
+                            await removeItemById(littleCustomNotes.customId, {search: 'Notas'});
+                            await addNewItem(notesForSolr, {search: 'Notas'});
+                            await littleCustomNotes.save();
+                            counter++;
                         }
                     }
                     console.log(`--- ${counter} de ${customNotes.length} ---`);
