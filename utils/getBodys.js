@@ -125,7 +125,7 @@ const bodyFortype = (type) => {
             };
         case 'PDFs':
             return {
-                date: 'datePublication',
+                date: 'date',
                 publication: 'publication',
                 notebook: 'noteBook',
                 whereSearch: [
