@@ -21,11 +21,11 @@ class SolrConnection {
         try {
             const client = solr.createClient(setDataBase(body.search));
 
-            console.log(`--- Deleting new data ---`);
+            // console.log(`--- Deleting new data ---`);
             const field = 'id';
             // id = '*';
             const obj = await client.delete(field, id.toString());
-            console.log(`--- Data deleted ---`)
+            // console.log(`--- Data deleted ---`)
 
         } catch (error) {
             console.log(error)

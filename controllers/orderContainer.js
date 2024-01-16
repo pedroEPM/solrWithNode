@@ -130,7 +130,7 @@ class OrderContainer {
         }
     }
 
-    async setIDFromPDFToNote(req, res) {
+    async setIDFromPDFToNoteV2(req, res) {
         try {
             console.log('Starting set items');
             for(let i = 2000; i >= 1925; i--){
@@ -163,6 +163,56 @@ class OrderContainer {
                             await littleCustomNotes.save();
                             counter++;
                         }
+                    }
+                    console.log(`--- ${counter} de ${customNotes.length} ---`);
+                }
+            }
+
+            res.status(200).json({
+                ok: true,
+                // data: newData?.response?.numFound
+            });
+        } catch (error) {
+            console.log(`--- Error from set ID From pdfs to note ---`);
+            console.log(error);
+            res.status(500).json({
+                ok: false,
+                msg: error
+            });
+        }
+    }
+
+    async setIDFromPDFToNote(req, res) {
+        try {
+            console.log('Starting set items');
+            for(let i = 2024; i >= 1900; i--){
+                console.log(`--- ${i} ---`);
+                // oldNotes
+                // oldPDFs
+
+                const newBody = {
+                    date: {
+                        $gte: new Date(`${i}-01-01`),
+                        $lt: new Date(`${i + 1 }-12-31`)
+                    },
+                    idMongoPDF: {$ne: null}
+                }
+
+                const customNotes = await allNotes.find(newBody);
+                if(customNotes.length > 0) {
+                    console.log(`--- length - ${customNotes.length} ---`);
+
+                    let counter = 0;
+                    for(const littleCustomNotes of customNotes) {
+                         
+                        const notesForSolr = setNote(littleCustomNotes);
+                        notesForSolr.idMongoPDF = littleCustomNotes.idMongoPDF;
+
+                        await removeItemById(littleCustomNotes.customId, {search: 'Notas'});
+                        await addNewItem(notesForSolr, {search: 'Notas'});
+                
+                        counter++;
+                        
                     }
                     console.log(`--- ${counter} de ${customNotes.length} ---`);
                 }
