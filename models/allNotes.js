@@ -40,5 +40,7 @@ const Notescontent06 = new Schema({
     isNewId: { type: String },
     isCheckedFromGalileo: { type: Boolean },
     customIdReverse: { type: Number},
+    idMongoPDF: { type: String }
+
 })
 module.exports = model('allNote', Notescontent06)
